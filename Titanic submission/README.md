@@ -1,6 +1,6 @@
 # Titanic Submission
-Kaggleの「Titanic - Machine Learning from Disaster」コンペティション用のデータ分析・機械学習リポジトリです。
-タイタニック号の乗客データから、各乗客が生存したか否かを予測するモデルを構築する。
+Kaggleにおける「Titanic - Machine Learning from Disaster」コンペティション用のデータ分析・機械学習リポジトリになります。
+タイタニック号の乗客データから、各乗客が"生存したか否か"を予測するモデルを構築しています。
 
 ## 📊 成果・スコア
 - **最終スコア (Accuracy):** 0.79425 (Top 10% 相当)
@@ -28,12 +28,18 @@ project/
 └── config.yaml         # ハイパーパラメータ等の設定ファイル
 ```
 
+#Datasets
+以下のCSVファイルより、Data参照
+/kaggle/input/competitions/titanic/train.csv
+/kaggle/input/competitions/titanic/test.csv
+/kaggle/input/competitions/titanic/gender_submission.csv
+
 🛠️ 環境構築 (Setup)
 以下のコマンドを実行して、実行に必要な仮想環境の構築とライブラリのインストールを行ってください。
 
 Bash
 # リポジトリのクローン
-git clone [https://github.com/あなたのユーザー名/titanic-submission.git](https://github.com/あなたのユーザー名/titanic-submission.git)
+git clone [https://github.com/Katsuraya3215/titanic-submission.git](https://github.com/Katsuraya3215/titanic-submission.git)
 cd titanic-submission
 
 # 必要なライブラリのインストール
