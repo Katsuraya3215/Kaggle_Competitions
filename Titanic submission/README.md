@@ -1,10 +1,62 @@
-# Titanic Submission
-Kaggleにおける「Titanic - Machine Learning from Disaster」コンペティション用のデータ分析・機械学習リポジトリになります。
+# Titanic Survival Prediction
+Kaggleにおける「Titanic - Machine Learning from Disaster」コンペティション用のデータ分析・機械学習リポジトリです。
 タイタニック号の乗客データから、各乗客が"生存したか否か"を予測するモデルを構築しています。
 
-## 📊 成果・スコア
-- **最終スコア (Accuracy):** 0.78229
+## 成果・スコア
+- **最終スコア Kaggle Public Score (Accuracy):** 0.78229
+- **交差検証 (Accuracy):** 0.84286
 - **主要採用モデル:** XGBClassifier
+
+## プロジェクトの目的
+このプロジェクトでは、機械学習の基本的な分析手順を一通り実践しました。
+- データの確認と可視化
+- 欠損値の処理
+- 特徴量エンジニアリング
+- 複数モデルの比較
+- 交差検証
+- ハイパーパラメータ調整
+- Pipelineによる前処理の一元化
+
+## 使用技術
+- Python
+- pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- scikit-learn
+- XGBoost
+- Optuna
+- Jupyter Notebook
+
+## 分析・モデル構築の流れ
+1. データの概要と欠損値を確認
+2. 生存率と各特徴量の関係を可視化
+3. 欠損値を補完
+4. 新しい特徴量を作成
+5. 複数のモデルを交差検証で比較
+6. Optunaでハイパーパラメータを探索
+7. 最終モデルで予測結果を作成
+
+## 主な特徴量エンジニアリング
+- `Title`：乗客名から敬称を抽出
+- `Family`：兄弟・配偶者・親子の人数から家族人数を作成
+- `Age`：Title別に年齢の中央値で、欠損を補完
+- `age_binning`：年齢帯を4つに区分
+- `logFare`：運賃の偏りを小さくするため対数変換
+- `has_cabin`：客室番号を持ち合わせているか否かの情報
+
+とくに、性別、年齢帯や性別と結びつく敬称、家族の有無が生存予測に重要だと考えました。
+
+## モデル別比較
+詳しくは、09 model_tuning に記載。同じ前処理、同じ特徴量で検証し、パラメータはそれぞれ探索した結果。
+
+| モデル | 交差検証 Accuracy |
+|---|---:|
+| LogisticRegression | 0.8024543343167408 |
+| RandomForestClassifier | 0.8372544096415794 |
+| XGBClassifier | 0.84286 |
+
+交差検証の結果とkaggleスコアを比較し、最終的にXGBClassifierを採用しました。
 
 ---
 
@@ -14,64 +66,33 @@ Kaggleにおける「Titanic - Machine Learning from Disaster」コンペティ�
 project/
 │
 ├── data/
-│ 　　├── raw/ # 加工前のオリジナルデータ
-│     │　　├── train.csv
-│     │    ├── test.csv
-│     └──  └── gender_submission.csv
+│   └── ※ Kaggleのデータセットはリポジトリに含めていません。コンペページからダウンロードしてください。
 │ 
 ├── notebooks/          # データの可視化（EDA）や単発の実験用ノートブック
 │   ├── 01_778_getting_started_with_titanic.ipynb #練習用
-│   ├── 02_706_missing_data_Imputation.ipynb
-│   ├── 03-eda.ipynb                              #データ分析
+│   ├── 02_706_missing_data_Imputation.ipynb      #欠損値処理
+│   ├── 03_eda.ipynb                              #データ分析
 │   ├── 04_768_baseline_model.ipynb               #基本ライン
-│   ├── 05_782_randomforestclassifier.ipynb       
-│   ├── 06_770_xgbclassifier.ipynb
-│   ├── 07_773_pipeline.ipynb
+│   ├── 05_782_randomforestclassifier.ipynb       #Random Forest
+│   ├── 06_770_xgbclassifier.ipynb                #XGBoost
+│   ├── 07_773_pipeline.ipynb                     #Pipelineの導入
 │   ├── 08_feature_engineering.ipynb              #特徴量エンジニアリング
-│   ├── 09_789_model-tuning.ipynb                 #パラメータ探索
-│   ├── 10_785_xgbclassifier-ver2.ipynb
-│   └── 11_770_xgbclassifier-ver3.ipynb
+│   ├── 09_789_model_tuning.ipynb                 #パラメータ探索
+│   ├── 10_785_xgbclassifier_ver2.ipynb           #改善モデル
+│   └── 11_770_xgbclassifier_ver3.ipynb           #追加検証
 │   
 ├── src/                # 最終採用モデル
-│    └── final_model 
+│    └── final_model.ipynb
+│ 
+├── output/
+│   └── submission.csv                # Kaggle提出用ファイル
 │
+├── .gitignore
 ├── README.md           # 本説明書
-├── requirements.txt    # 必要なPythonライブラリの一覧
-└── config.yaml         # ハイパーパラメータ等の設定ファイル
+└── requirements.txt    # 必要なPythonライブラリの一覧
+
 ```
 
-#Datasets
-以下のCSVファイルより、Data参照
-/kaggle/input/competitions/titanic/train.csv
-/kaggle/input/competitions/titanic/test.csv
-/kaggle/input/competitions/titanic/gender_submission.csv
-
-🛠️ 環境構築 (Setup)
-以下のコマンドを実行して、実行に必要な仮想環境の構築とライブラリのインストールを行ってください。
-
-Bash
-# リポジトリのクローン
-git clone [https://github.com/Katsuraya3215/titanic-submission.git](https://github.com/Katsuraya3215/titanic-submission.git)
-cd titanic-submission
-
-# 必要なライブラリのインストール
-pip install -r requirements.txt
-
-⚠️ 注意: data/ フォルダの中に、Kaggle公式からダウンロードした train.csv および test.csv を配置してから以降の手順を実行してください。
-
-🚀 実行手順 (How to Run)
-本リポジトリは、以下の順にスクリプトを実行することで、前処理から予測ファイルの出力までが自動で完結します。
-
-1. モデルの学習 (Train)
-src/train.py を実行すると、データの前処理（features.py の呼び出し）が行われ、モデルの学習が始まります。学習済みモデルは models/ に保存されます。
-
-python -m src.train
-
-2. 推論と提出ファイルの作成 (Inference)
-src/inference.py を実行すると、学習済みモデルを使ってテストデータの予測を行い、提出用の submission.csv をルートディレクトリに出力します。
-
-Bash
-python -m src.inference
 
 🧪 実験記録とアプローチ (Approach & Validation)
 ローカル環境での交差検証（Cross Validation: 5-Fold）のスコア推移です。
