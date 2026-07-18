@@ -3,8 +3,8 @@ Kaggleにおける「Titanic - Machine Learning from Disaster」コンペティ�
 タイタニック号の乗客データから、各乗客が"生存したか否か"を予測するモデルを構築しています。
 
 ## 📊 成果・スコア
-- **最終スコア (Accuracy):** 0.79425 (Top 10% 相当)
-- **主要モデル:** LightGBM, TensorFlow Decision Forests (TF-DF)
+- **最終スコア (Accuracy):** 0.78229
+- **主要採用モデル:** XGBClassifier
 
 ---
 
@@ -13,7 +13,12 @@ Kaggleにおける「Titanic - Machine Learning from Disaster」コンペティ�
 ```text
 project/
 │
-├── data/               # Kaggleからダウンロードした生データ（Git管理対象外）
+├── data/
+│ 　　├── raw/ # 加工前のオリジナルデータ
+│     │　　├── train.csv
+│     │    ├── test.csv
+│     └──  └── gender_submission.csv
+│ 
 ├── notebooks/          # データの可視化（EDA）や単発の実験用ノートブック
 │   ├── 01_778_getting_started_with_titanic.ipynb #練習用
 │   ├── 02_706_missing_data_Imputation.ipynb
@@ -27,12 +32,9 @@ project/
 │   ├── 10_785_xgbclassifier-ver2.ipynb
 │   └── 11_770_xgbclassifier-ver3.ipynb
 │   
-├── src/                # 本番用ソースコード
-│   ├── features.py     # データの前処理・特徴量エンジニアリング
-│   ├── train.py        # モデルの学習と重みの保存
-│   └── inference.py    # 学習済みモデルを使った予測ファイルの作成
+├── src/                # 最終採用モデル
+│    └── final_model 
 │
-├── models/             # 学習済みモデルの保存先（Git管理対象外）
 ├── README.md           # 本説明書
 ├── requirements.txt    # 必要なPythonライブラリの一覧
 └── config.yaml         # ハイパーパラメータ等の設定ファイル
