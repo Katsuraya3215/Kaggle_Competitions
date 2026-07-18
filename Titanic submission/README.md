@@ -15,8 +15,18 @@ project/
 │
 ├── data/               # Kaggleからダウンロードした生データ（Git管理対象外）
 ├── notebooks/          # データの可視化（EDA）や単発の実験用ノートブック
-│   ├── 01_eda.ipynb
-│   └── 02_baseline.ipynb
+│   ├── 01_778_getting_started_with_titanic.ipynb #練習用
+│   ├── 02_706_missing_data_Imputation.ipynb
+│   ├── 03-eda.ipynb                              #データ分析
+│   ├── 04_768_baseline_model.ipynb               #基本ライン
+│   ├── 05_782_randomforestclassifier.ipynb       
+│   ├── 06_770_xgbclassifier.ipynb
+│   ├── 07_773_pipeline.ipynb
+│   ├── 08_feature_engineering.ipynb              #特徴量エンジニアリング
+│   ├── 09_789_model-tuning.ipynb                 #パラメータ探索
+│   ├── 10_785_xgbclassifier-ver2.ipynb
+│   └── 11_770_xgbclassifier-ver3.ipynb
+│   
 ├── src/                # 本番用ソースコード
 │   ├── features.py     # データの前処理・特徴量エンジニアリング
 │   ├── train.py        # モデルの学習と重みの保存
