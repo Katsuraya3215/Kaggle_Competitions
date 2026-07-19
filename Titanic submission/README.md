@@ -104,7 +104,7 @@ project/
 
 * 01	RandomForestClassifier	ベースライン（カテゴリ列のみ）		Public Score:0.778	まず動くものを作成
 * 02	RandomForestClassifier	数値列のみ使用・中央値で欠損補完	　PS:0.706	予測正解率が大幅にダウン
-* 04	LogisticRegression 新特徴量と数値列、カテゴリ列を加えて別のモデル作成　	検証score:0.827 PS:0.768	点数は伸びず
+* 04	LogisticRegression 新特徴量と数値列、カテゴリ列を加えて別のモデル作成　検証score:0.827 PS:0.768	点数は伸びず
 * 07	XGBClassifier	Pipelineの作成　全行程を1つにまとめる	PS:0.773
 * 09 LogisticRegression/RandomForest/XGBoost 全モデルの比較検証,XGBoostが最適であった　検証スコア:0.8496 PS:0.789  ※最高スコアモデル
 * 10,11 XGBClassifier 特徴量の作成、欠損補完、パラメータ探索など全ての調査　PS:0.770~0.785 結果はでず
