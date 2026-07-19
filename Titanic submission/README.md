@@ -3,9 +3,14 @@ Kaggleにおける「Titanic - Machine Learning from Disaster」コンペティ�
 タイタニック号の乗客データから、各乗客が"生存したか否か"を予測するモデルを構築しています。
 
 ## 成果・スコア
-- **最終スコア Kaggle Public Score (Accuracy):** 0.78229
+- **最高Kaggle Piblic Score:0.78947
+- **最終再現モデルのスコア Kaggle Public Score (Accuracy):** 0.78229
 - **交差検証 (Accuracy):** 0.84286
-- **主要採用モデル:** XGBClassifier
+- **主要採用モデル:** XGBClassifier　再現モデル:XGBClassifier
+
+  最高スコアは「09_789_model-tuning.ipynb」で記録しました。
+  その後、処理を整理して最終モデルを再構築したところ、同様の構成でもスコアに小さな差が
+  発生しました。この経験から、乱数固定や実行環境を含めた再現性の重要性を学びました。
 
 ## プロジェクトの目的
 このプロジェクトでは、機械学習の基本的な分析手順を一通り実践しました。
