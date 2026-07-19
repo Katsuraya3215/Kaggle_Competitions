@@ -87,10 +87,10 @@ project/
 │   └── 11_770_xgbclassifier_ver3.ipynb           #追加検証
 │   
 ├── src/                # 最終採用モデル
-│    └── final_model.ipynb
+│    └── 782_final_model.ipynb
 │ 
 ├── output/
-│   └── submission.csv                # Kaggle提出用ファイル
+│   └── final_model_submission.csv                # Kaggle提出用ファイル
 │
 ├── .gitignore
 ├── README.md           # 本説明書
@@ -99,14 +99,16 @@ project/
 ```
 
 
-🧪 実験記録とアプローチ (Approach & Validation)
+** 実験記録とアプローチ (Approach & Validation)
 ローカル環境での交差検証（Cross Validation: 5-Fold）のスコア推移です。
 
-Exp No.	モデル	施策・特徴量エンジニアリング	Local CV	Public Score	備考
-01	LightGBM	ベースライン（数値特徴量のみ）	0.762	0.755	まず動くものを作成
-02	LightGBM	Name列から敬称(Mr/Miss)を抽出	0.785	0.779	予測に大きく貢献
-03	TF-DF	決定木によるテキストトークン化	0.791	0.784	表現力が向上
-04	Ensemble	Exp02 と Exp03 のアンサンブル	0.801	0.794	★最終採用モデル
+* 01	RandomForestClassifier	ベースライン（カテゴリ列のみ）		Public Score:0.778	まず動くものを作成
+* 02	RandomForestClassifier	数値列のみ使用・中央値で欠損補完	　PS:0.706	予測正解率が大幅にダウン
+* 04	LogisticRegression 新特徴量と数値列、カテゴリ列を加えて別のモデル作成　	検証score:0.827 PS:0.768	点数は伸びず
+* 07	XGBClassifier	Pipelineの作成　全行程を1つにまとめる	PS:0.773
+* 09 LogisticRegression/RandomForest/XGBoost 全モデルの比較検証,XGBoostが最適であった　検証スコア:0.8496 PS:0.789  ※最高スコアモデル
+* 10,11 XGBClassifier 特徴量の作成、欠損補完、パラメータ探索など全ての調査　PS:0.770~0.785 結果はでず
+* final_model XGBClassifier　最高スコアモデルをキレイにまとめて再現　PS:0.782 ※最終再現モデル
 
 💡 工夫したポイント
 ・notebookの01(性差による分別：特徴量"Sex"重視スコア=0.778)，02(数値特徴量のみ、スコア=0.706)の試作より、性別に基づく特徴量が正確性に大きな影響を及ぼしていることを確認。文字列特徴量の数値への落とし込みを重点的に進めていく
