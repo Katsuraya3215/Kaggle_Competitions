@@ -4,7 +4,7 @@ Kaggleにおける「Titanic - Machine Learning from Disaster」コンペティ�
 
 ## 成果・スコア
 - **最高Kaggle Piblic Score:0.78947**
-- **順位:1153位/11100人 上位10.4%
+- **順位:1153位/11100人 上位10.4%**
 - **最終再現モデルのスコア Kaggle Public Score (Accuracy):** 0.78229
 - **交差検証 (Accuracy):** 0.84286
 - **主要採用モデル:** XGBClassifier　再現モデル:XGBClassifier
